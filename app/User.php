@@ -39,5 +39,5 @@ class User extends Authenticatable
 
     protected $table = 'users';
     
-    protected $primaryKey = 'matk';
+    // protected $primaryKey = 'matk';
 }
