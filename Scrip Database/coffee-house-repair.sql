@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2019 lúc 12:52 AM
+-- Thời gian đã tạo: Th10 29, 2019 lúc 10:53 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -210,13 +210,6 @@ CREATE TABLE `reminders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `reminders`
---
-
-INSERT INTO `reminders` (`id`, `user_id`, `code`, `completed`, `completed_at`, `created_at`, `updated_at`) VALUES
-(15, 23, 's7GL58CJjCFZtsKr2fTHKqVQzzjwwUOi', 0, NULL, '2019-11-28 17:36:33', '2019-11-28 17:36:33');
-
 -- --------------------------------------------------------
 
 --
@@ -284,7 +277,9 @@ INSERT INTO `sanpham` (`masp`, `tensp`, `maloaisp`, `mota`, `gia`, `giakm`, `hin
 (41, 'BÁNH MATCHA', 5, '', 29000, 0, 'banhmatcha_29k.jpg', 'cái', 0, '2016-10-12 19:20:00', '2016-10-18 20:20:00'),
 (42, 'BÁNH MÌ CHÀ BÔNG PHÔ MAI', 5, '', 32000, 26000, 'banhmichabongphomai_32k.jpg', 'cái', 0, '2016-10-12 19:20:00', '2016-10-18 20:20:00'),
 (43, 'BÁNH PASSION CHEESE', 5, '', 29000, 0, 'banhpassioncheese_29k.jpg', 'cái', 1, '2016-10-12 19:20:00', '2016-10-18 20:20:00'),
-(44, 'BÁNH TIRAMISU', 5, '', 29000, 22000, 'banhtiramisu_29k.jpg', 'cái', 0, '2016-10-12 19:20:00', '2016-10-18 20:20:00');
+(44, 'BÁNH TIRAMISU', 5, '', 29000, 22000, 'banhtiramisu_29k.jpg', 'cái', 0, '2016-10-12 19:20:00', '2016-10-18 20:20:00'),
+(63, 'Trà sữa trân châu đường đen', 2, 'Trà sữa chưa hết “hot”, mùa hè này lại rộ lên “phiên bản” mới với những nguyên liệu không hề mới mẻ - Trà sữa trân châu đường đen song lại rất đắt khách', 26000, 0, 'tra-sua-tran-chau-duong-den_36k.jpg', 'Ly', 0, NULL, NULL),
+(64, 'Snack Curd', 5, 'Snack Curd là một loại snack ngọt làm từ pho mát sữa đông, phổ biến ở vùng Baltic, Nó là một loại sữa pho mát phổ biến ở các nước vùng Balkans, được làm từ sữa cừu, dê hoặc sữa bò.', 20000, 18000, 'Curd-Snack_20k.jpg', 'Cái', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -350,8 +345,8 @@ INSERT INTO `users` (`id`, `tentk`, `email`, `password`, `remember_token`, `crea
 (1, 'Yuuta', 'admin@gmail.com', '$2y$10$uLvNSU1W6mdobj2NgrxeuOSBTZC2fFMdYphLYmae1Yi9KM1W8Gu9e', NULL, '2019-11-26 13:34:56', '2019-11-26 13:34:56', 2),
 (18, 'Yuuta', 'admin123@gmail.com', '$2y$10$Uu6QkXJ8pBHJsA.0MuBs5eHcARFyxjlvMN87cfcPG2RaBP3Gi553m', NULL, '2019-11-26 14:29:36', '2019-11-26 14:29:36', 2),
 (21, 'Yuuta', 'admin1780@gmail.com', '$2y$10$Hfb666GFeByGWp7AProKi.XZqiMsJ5H5TcotQo9h3rwmUTsmy6gl6', NULL, '2019-11-27 01:45:18', '2019-11-27 01:45:18', NULL),
-(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$kpJUYtrtUlvP9tvf.qthD.u6Lm7NmvTgePkcI6wOooAI.jS/GhtL6', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', NULL),
-(23, 'Yuuta', 'quoctuanlyoko@gmail.com', '$2y$10$8ZHqeXm9DIcvr8xuP.OaO.eda3BVdEeZOWS7P.wy/ZjdUFU.yW2RC', NULL, '2019-11-28 17:09:47', '2019-11-28 17:09:47', NULL);
+(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$Q/XQP0eEnBHN6ciR14h22elhh3Io/HKUpUZnr.7Ym.GS46NFie.hO', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', NULL),
+(23, 'Yuuta', 'quoctuanlyoko@gmail.com', '$2y$10$y6qbjdlpxodZ8FWfyh1H7ORv5i0EP6UaKX/ZfBisdMn8jUJpkKjNe', NULL, '2019-11-28 17:09:47', '2019-11-28 17:09:47', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -486,13 +481,13 @@ ALTER TABLE `loaisanpham`
 -- AUTO_INCREMENT cho bảng `reminders`
 --
 ALTER TABLE `reminders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `masp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `masp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT cho bảng `slide`
