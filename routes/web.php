@@ -98,4 +98,6 @@ Route::get('timkiem', [
 
 Route::get('donhang/{email}', 'AjaxController@getDonhang');
 
-Route::get('timkiemAjax/{str}', 'AjaxController@getTimkiem');
+// Route::get('timkiemAjax/{str}', 'AjaxController@getTimkiem');
+
+Route::get('timkiemAjax', 'AjaxController@getTimkiem')->name('timkiemAjax');
