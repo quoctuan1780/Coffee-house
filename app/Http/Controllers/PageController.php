@@ -151,6 +151,7 @@ class PageController extends Controller
         $user->tentk = $req->tentk;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
+        $user->maquyen = 2;
         $user->save();
         $tttk = User::where('email', $req->email)->first();
         $khachhang->hoten = $req->hoten;

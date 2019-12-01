@@ -55,7 +55,7 @@
 				$(".header-bottom").removeClass('fixNav')
 			}}
 		)
-	})
+	});
 	</script>
 </body>
 </html>

@@ -82,7 +82,7 @@
         // });
         $(document).ready(function(){
       
-            $('#sAjax').change(function(){ 
+            $('#sAjax').keyup(function(){ 
             var query = $(this).val(); 
             if(query != '') 
                 {
