@@ -114,6 +114,8 @@ class PageController extends Controller
 
         $dangnhap = array('email'=>$req->email,'password'=>$req->password);
         if(Auth::attempt($dangnhap)){
+            DB::table('users')->where('email', $req->email)
+                                ->update(['ttdn' => 1]);
             if(Session::has('cart')){
                 $khachhang = Khachhang::where('email', Auth::user()->email)->first();
                 return view('page.dathang', compact('khachhang'));
@@ -126,6 +128,9 @@ class PageController extends Controller
         }
     }
     public function getDangxuat(){
+        $email = Auth::user()->email;
+        DB::table('users')->where('email', $email)
+                                ->update(['ttdn' => 0]);
         Auth::logout();
         return redirect()->route('trang-chu');
     }
