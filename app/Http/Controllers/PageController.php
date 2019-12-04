@@ -44,12 +44,12 @@ class PageController extends Controller
                                 ->groupBy('ctdh.masp', 'sanpham.tensp', 'sanpham.gia', 'sanpham.giakm', 'sanpham.hinhanh')
                                 ->orderBy('tongsl', 'desc')
                                 ->get();
-        if(count($sp_moi) >= 4)
+        if(count($sp_mua) >= 4)
         for($i = 0; $i < 4; $i++){
             $sp_banchay[$i] = $sp_mua[$i];
         }
         else
-        for($i = 0; $i < count($sp_moi); $i++){
+        for($i = 0; $i < count($sp_mua); $i++){
             $sp_banchay[$i] = $sp_mua[$i];
         } 
     	return view('page.chitietsanpham', compact('sanpham', 'sp_tuongtu', 'sp_moi', 'sp_banchay'));
