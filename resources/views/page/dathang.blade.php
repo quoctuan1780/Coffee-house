@@ -38,7 +38,7 @@
 					<div class="space20">&nbsp;</div>
 
 					<div class="form-block">
-						<label for="email" style="padding-top: 10px">Email*</label>
+						<label style="padding-top: 10px">Email*</label>
 						<input type="email" id="emailAjax" name="emailAjax" required placeholder="expample@gmail.com">
 					</div>
 
@@ -141,7 +141,7 @@
 					<div class="space20">&nbsp;</div>
 
 					<div class="form-block">
-					<label for="email" style="padding-top: 10px">Email*</label>
+					<label style="padding-top: 10px">Email*</label>
 					<input type="email" id="email" name="email" value="{{$khachhang->email}}" required placeholder="expample@gmail.com">
 					</div>
 

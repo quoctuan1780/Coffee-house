@@ -44,22 +44,6 @@
 
 							<p>Số lượng:</p>
 							<div class="single-item-options">
-								<!-- <select class="wc-select" name="size">
-									<option>Size</option>
-									<option value="XS">XS</option>
-									<option value="S">S</option>
-									<option value="M">M</option>
-									<option value="L">L</option>
-									<option value="XL">XL</option>
-								</select>
-								<select class="wc-select" name="color">
-									<option>Color</option>
-									<option value="Red">Red</option>
-									<option value="Green">Green</option>
-									<option value="Yellow">Yellow</option>
-									<option value="Black">Black</option>
-									<option value="White">White</option>
-								</select> -->
 								<form method="get" action="{{ route('them-nhieu-gio-hang', $sanpham->masp) }}">
 									<select class="wc-select" name="soluong" style="height: 40px;">
 										<option value="1">1</option>
@@ -116,7 +100,7 @@
 										</p>
 									</div>
 									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="#"><i class="fa fa-shopping-cart"></i></a>
+										<a class="add-to-cart pull-left" href="{{ route('them-gio-hang', $sptt->masp) }}"><i class="fa fa-shopping-cart"></i></a>
 										<a class="beta-btn primary" href="{{route('chi-tiet-san-pham', $sptt->masp)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
 										<div class="clearfix"></div>
 									</div>

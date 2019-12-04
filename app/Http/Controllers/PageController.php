@@ -34,19 +34,24 @@ class PageController extends Controller
     }
 
     public function getChiTietSp(Request $req){
-        $sp_banchay;
+        $sp_banchay = [];
         $sanpham = Sanpham::where('masp', $req->masp)->first();
         $sp_tuongtu = Sanpham::where('maloaisp', $sanpham->maloaisp)->paginate(3);
-        $sp_moi = Sanpham::where('moi', '=', 1)->paginate(2);
+        $sp_moi = Sanpham::where('moi', '=', 1)->paginate(2);   
         $sp_mua = DB::table('ctdh')
                                 ->select('ctdh.masp', DB::raw('SUM(soluong) as tongSl'), 'sanpham.tensp', 'sanpham.gia', 'sanpham.giakm', 'sanpham.hinhanh')
                                 ->join('sanpham', 'ctdh.masp', '=' ,'sanpham.masp')
                                 ->groupBy('ctdh.masp', 'sanpham.tensp', 'sanpham.gia', 'sanpham.giakm', 'sanpham.hinhanh')
                                 ->orderBy('tongsl', 'desc')
-                                ->get();  
+                                ->get();
+        if(count($sp_moi) >= 4)
         for($i = 0; $i < 4; $i++){
             $sp_banchay[$i] = $sp_mua[$i];
         }
+        else
+        for($i = 0; $i < count($sp_moi); $i++){
+            $sp_banchay[$i] = $sp_mua[$i];
+        } 
     	return view('page.chitietsanpham', compact('sanpham', 'sp_tuongtu', 'sp_moi', 'sp_banchay'));
     }
 
@@ -158,14 +163,13 @@ class PageController extends Controller
         $user->password = Hash::make($req->password);
         $user->maquyen = 2;
         $user->save();
-        $tttk = User::where('email', $req->email)->first();
         $khachhang->hoten = $req->hoten;
         $khachhang->gioitinh = $req->gioitinh;
         $khachhang->diachi = $req->diachi;
         $khachhang->email = $req->email;
         $khachhang->diachi = $req->diachi;
         $khachhang->sodt = $req->sodt;
-        $khachhang->matk = $tttk->matk;
+        $khachhang->matk = $user->id;
         $khachhang->save();
         return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
     }
@@ -173,6 +177,10 @@ class PageController extends Controller
     public function getDathang(){
         if(Auth::check()){
             if(Session::has('cart')){
+                $khachhang = Khachhang::where('email', Auth::user()->email)->first();
+                return view('page.dathang', compact('khachhang'));
+            }
+            else{
                 $khachhang = Khachhang::where('email', Auth::user()->email)->first();
                 return view('page.dathang', compact('khachhang'));
             }
@@ -200,7 +208,7 @@ class PageController extends Controller
                 $ctdh->madh  = $donhang->id;
                 $ctdh->masp = $key;
                 $ctdh->soluong = $value['qty'];
-                $ctdh->gia = ($value['price']/$value['qty']);
+                $ctdh->gia = ($value['price']);
                 $ctdh->save();   
             }
         }
@@ -219,7 +227,7 @@ class PageController extends Controller
                     $ctdh->madh  = $donhang->id;
                     $ctdh->masp = $key;
                     $ctdh->soluong = $value['qty'];
-                    $ctdh->gia = ($value['price']/$value['qty']);
+                    $ctdh->gia = ($value['price']);
                     $ctdh->save();   
                 }
             }
@@ -243,7 +251,7 @@ class PageController extends Controller
                     $ctdh->madh  = $donhang->id;
                     $ctdh->masp = $key;
                     $ctdh->soluong = $value['qty'];
-                    $ctdh->gia = ($value['price']/$value['qty']);
+                    $ctdh->gia = ($value['price']);
                     $ctdh->save();  
                 }
             }
