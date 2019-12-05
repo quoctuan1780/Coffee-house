@@ -50,8 +50,8 @@
 
 					<div class="form-block">
 						<label>Giới tính </label>
-						<input id="genderAjax" type="radio" class="input-radio" name="gioitinhAjax" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-						<input id="genderAjax" type="radio" class="input-radio" name="gioitinhAjax" value="nữ" style="width: 10%"><span>Nữ</span>			
+						<input id="genderAjax" type="radio" class="input-radio" name="gioitinhAjax" value="Nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
+						<input id="genderAjax" type="radio" class="input-radio" name="gioitinhAjax" value="Nữ" style="width: 10%"><span>Nữ</span>			
 					</div>
 
 					<div class="form-block">
@@ -152,15 +152,15 @@
 					<div class="form-block">
 					@if($khachhang->gioitinh == 'Nam')
 						<label>Giới tính </label>
-						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="nam" checked="checked" style="width: 10%">
+						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="Nam" checked="checked" style="width: 10%">
 						<span style="margin-right: 10%">Nam</span>
-						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="nữ" style="width: 10%">
+						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="Nữ" style="width: 10%">
 						<span>Nữ</span>
 					@else
 						<label>Giới tính </label>
-						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="nam" style="width: 10%">
+						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="Nam" style="width: 10%">
 						<span style="margin-right: 10%">Nam</span>
-						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="nữ" checked="checked" style="width: 10%">
+						<input id="gender" type="radio" class="input-radio" name="gioitinh" value="Nữ" checked="checked" style="width: 10%">
 						<span>Nữ</span>
 					@endif
 					</div>
