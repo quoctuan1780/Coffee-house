@@ -37,9 +37,16 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="widget">
+						@if(Session('ntthanhcong'))
+		                    <div class="alert alert-success">{{ Session('ntthanhcong') }}</div>
+		                @endif
+		                @if(Session('ntloi'))
+		                    <div class="alert alert-danger">{{ Session('ntloi') }}</div>
+		                @endif
 						<h4 class="widget-title">Đăng ký nhận tin</h4>
-						<form action="#" method="post">
-							<input type="email" name="your_email" placeholder="Nhập email...">
+						<form action="{{ route('dang-ki-nhan-tin') }}" method="post">
+						<input type="hidden" name="_token" value="{{csrf_token()}}">
+							<input type="email" name="email" placeholder="Nhập email...">
 							<button class="pull-right" type="submit">Đăng ký<i class="fa fa-chevron-right"></i></button>
 						</form>
 					</div>

@@ -10,6 +10,8 @@ use App\Ctdh;
 use App\Tintuc;
 use App\Cart;
 use App\User;
+use App\Phanhoi;
+use App\Dknt;
 use Session;
 use Hash;
 use Auth;
@@ -57,6 +59,26 @@ class PageController extends Controller
 
     public function getLienHe(){
     	return view('page.lienhe');
+    }
+
+    public function postLienhe(Request $req){
+        $this->validate($req,
+            [
+                'email'=>'required|email'
+            ],
+            [
+                'email.required'=>'Vui lòng nhập email',
+                'email.email'=>'Email không đúng định dạng'
+            ]
+        );
+        $phanhoi = new Phanhoi();
+        $phanhoi->email = $req->email;
+        $phanhoi->hoten = $req->name;
+        $phanhoi->vande = $req->subject;
+        $phanhoi->noidung = $req->message;
+        $phanhoi->ngayph = Date('Y-m-d');
+        $phanhoi->save();
+        return redirect()->back()->with(['thanhcong'=>'Chúng tôi đã ghi nhận phản hồi của bạn, xin cảm ơn']);
     }
 
     public function getGioiThieu(){
@@ -264,5 +286,17 @@ class PageController extends Controller
         $product = Sanpham::where('tensp', 'like', '%'.$req->s.'%')
                             ->orWhere('gia', $req->s)->get();
         return view('page.timkiem', compact('product'));
+    }
+
+    public function postDangkinhantin(Request $req){
+        $checkMail = Dknt::where('email', $req->email)->first();
+        if(is_null($checkMail)){
+            $dknt = new Dknt();
+            $dknt->email = $req->email;
+            $dknt->ngaydk = date('Y-m-d');
+            $dknt->save();
+            return redirect()->back()->with(['ntthanhcong'=>'Đăng kí nhận tin thành công']);
+        }
+        else return redirect()->back()->with(['ntloi'=>'Email này đã đăng kí nhận tin rồi']);
     }
 }

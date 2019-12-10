@@ -35,6 +35,11 @@ Route::get('lienhe', [
 	'uses'=>'PageController@getLienHe'
 ]);
 
+Route::post('lienhe', [
+	'as'=>'lien-he',
+	'uses'=>'PageController@postLienhe'
+]);
+
 Route::get('gioithieu',[
 	'as'=>'gioi-thieu',
 	'uses'=>'PageController@getGioiThieu'
@@ -94,6 +99,11 @@ Route::post('dathang', [
 Route::get('timkiem', [
 	'as'=>'tim-kiem',
 	'uses'=>'PageController@getTimkiem'
+]);
+
+Route::post('dangkinhantin', [
+	'as'=>'dang-ki-nhan-tin',
+	'uses'=>'PageController@postDangkinhantin'
 ]);
 
 Route::get('donhang/{email}', 'AjaxController@getDonhang');
