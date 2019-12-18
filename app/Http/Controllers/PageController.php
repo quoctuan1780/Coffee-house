@@ -12,6 +12,7 @@ use App\Cart;
 use App\User;
 use App\Phanhoi;
 use App\Dknt;
+use App\Gioithieu;
 use Session;
 use Hash;
 use Auth;
@@ -82,7 +83,8 @@ class PageController extends Controller
     }
 
     public function getGioiThieu(){
-    	return view('page.gioithieu');
+        $gioithieu = Gioithieu::all();
+    	return view('page.gioithieu', compact('gioithieu'));
     }
 
     public function getThemgiohang(Request $req, $masp){

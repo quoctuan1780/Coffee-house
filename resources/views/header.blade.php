@@ -3,8 +3,8 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href="#"><i class="fa fa-home"></i>Quốc Tuấn - Đại học công nghệ thông tin - KP6 - Linh Trung - Thủ Đức - TP HCM</a></li>
-						<li><a href="#"><i class="fa fa-phone"></i> 0163 296 7751</a></li>
+						<li><a href="{{ route('lien-he') }}"><i class="fa fa-home"></i>Quốc Tuấn - Đại học công nghệ thông tin - KP6 - Linh Trung - Thủ Đức - TP HCM</a></li>
+						<li><a href="{{ route('lien-he') }}"><i class="fa fa-phone"></i> 0163 296 7751</a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
@@ -77,7 +77,7 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-						<li><a href="#">Loại sản phẩm</a>
+						<li><a href="/Coffee/public/index">Loại sản phẩm</a>
 							<ul class="sub-menu">
 								@foreach($loai_sp as $loai)
 									<li><a href="{{ route('loai-san-pham', $loai->maloaisp) }}">{{$loai->tenloaisp}}</a></li>
