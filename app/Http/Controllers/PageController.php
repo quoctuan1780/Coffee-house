@@ -13,10 +13,10 @@ use App\User;
 use App\Phanhoi;
 use App\Dknt;
 use App\Gioithieu;
-use Session;
-use Hash;
-use Auth;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PageController extends Controller

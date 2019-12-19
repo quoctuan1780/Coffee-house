@@ -111,3 +111,23 @@ Route::get('donhang/{email}', 'AjaxController@getDonhang');
 // Route::get('timkiemAjax/{str}', 'AjaxController@getTimkiem');
 
 Route::get('timkiemAjax', 'AjaxController@getTimkiem')->name('timkiemAjax');
+
+Route::get('quenmatkhau', [
+	'as'=>'quen-mat-khau',
+	'uses'=>'AccountController@getQuenmatkhau'
+]);
+
+Route::post('quenmatkhau', [
+	'as'=>'quen-mat-khau',
+	'uses'=>'AccountController@postQuenmatkhau'
+]);
+
+Route::get('khoiphuc/{email}/{code}', [
+	'as'=>'khoi-phuc',
+	'uses'=>'AccountController@getKhoiphuc'
+]);
+
+Route::post('khoiphuc', [
+	'as'=>'khoi-phuc',
+	'uses'=>'AccountController@postKhoiphuc'
+]);

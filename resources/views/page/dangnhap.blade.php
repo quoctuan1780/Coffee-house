@@ -7,7 +7,7 @@
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb">
-					<a href="index.html">Home</a> / <span>Đăng nhập</span>
+					<a href="{{route('trang-chu')}}">Home</a> / <span>Đăng nhập</span>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -24,6 +24,12 @@
 					@if(Session::has('flag'))
 						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
 					@endif
+					@if(Session('loi'))
+                        <div class="alert alert-danger">{{Session('loi')}}</div>
+                    @endif
+                    @if(Session('thanhcong'))
+                        <div class="alert alert-success">{{Session('thanhcong')}}</div>
+                    @endif
 					<div class="col-sm-6">
 						<h4>Đăng nhập</h4>
 						<div class="space20">&nbsp;</div>
@@ -36,6 +42,9 @@
 						<div class="form-block">
 							<label for="phone">Password*</label>
 							<input type="password" name="password" required>
+						</div>
+						<div class="form-block">
+							<a href="{{ route('quen-mat-khau') }}">Quên mật khẩu</a>
 						</div>
 						<div class="form-block">
 							<button type="submit" class="btn btn-primary">Login</button>
