@@ -77,7 +77,7 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-						<li><a href="/Coffee/public/index">Loại sản phẩm</a>
+						<li><a href="javascrip:void(0)">Loại sản phẩm</a>
 							<ul class="sub-menu">
 								@foreach($loai_sp as $loai)
 									<li><a href="{{ route('loai-san-pham', $loai->maloaisp) }}">{{$loai->tenloaisp}}</a></li>

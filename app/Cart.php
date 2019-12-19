@@ -58,12 +58,13 @@ class Cart
 		$this->totalQty += $soluong;
 		$this->items[$masp] = $giohang;
 		if($item->giakm == 0){
+
 			$giohang['price'] = $item->gia * $giohang['qty'];
-			$this->totalPrice += $item->gia * $giohang['qty'];
+			$this->totalPrice += $item->gia * $soluong;
 		}
 		else{
 			$giohang['price'] = $item->giakm * $giohang['qty'];
-			$this->totalPrice += $item->giakm * $giohang['qty'];
+			$this->totalPrice += $item->giakm * $soluong;
 		}
 	}
 	//xóa 1
