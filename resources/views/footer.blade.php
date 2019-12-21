@@ -10,12 +10,10 @@
 						<h4 class="widget-title">Thông tin</h4>
 						<div>
 							<ul>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Web Design</a></li>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Web development</a></li>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Marketing</a></li>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Tips</a></li>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Resources</a></li>
-								<li><a href="Javascript.void(0)"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+								<li><a href="Javascript:void(0)"><i class="fa fa-chevron-right"></i> Về chúng tôi</a></li>
+								<li><a href="Javascript:void(0)"><i class="fa fa-chevron-right"></i> Giới thiệu</a></li>
+								<li><a href="Javascript:void(0)"><i class="fa fa-chevron-right"></i> Chính sách bảo mật</a></li>
+								<li><a href="Javascript:void(0)"><i class="fa fa-chevron-right"></i> Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>

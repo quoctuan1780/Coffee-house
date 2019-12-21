@@ -44,17 +44,13 @@
 
 							<p>Số lượng:</p>
 							<div class="single-item-options">
-								<form method="get" action="{{ route('them-nhieu-gio-hang', $sanpham->masp) }}">
-									<select class="wc-select" name="soluong" style="height: 40px;">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
 								
-									<button type="submit" href="#" style="width: 50px"><a class="add-to-cart" style="margin-left: 2px" href="#"><i class="fa fa-shopping-cart"></i></a></button>
-								</form>
+								<div style="display: inline-flex">
+									<input type="number" class="form-control text-center" value="1" id="soluong" style="width: 60px; height: 35px">
+									<a class="add-to-cart" href="javascript:void(0)" onclick="addMulticart({{ $sanpham->masp }}, document.getElementById('soluong'))">
+										<i class="fa fa-shopping-cart"></i></a>
+								</div>
+						
 								<div class="clearfix"></div>
 							</div>
 						</div>
@@ -100,7 +96,7 @@
 										</p>
 									</div>
 									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="{{ route('them-gio-hang', $sptt->masp) }}"><i class="fa fa-shopping-cart"></i></a>
+										<a class="add-to-cart pull-left" href="javascript:void(0)" onclick="addCart({{ $sptt->masp }})"><i class="fa fa-shopping-cart"></i></a>
 										<a class="beta-btn primary" href="{{route('chi-tiet-san-pham', $sptt->masp)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
 										<div class="clearfix"></div>
 									</div>
@@ -168,21 +164,36 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		$('.paginate ul.pagination').hide();
-
-		$(function() {
-            $('.paginateRow').jscroll({
-                autoTrigger: true,
-                loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
-                padding: 0,
-                nextSelector: '.pagination li.active + li a',
-                contentSelector: 'div.paginateRow',
-                callback: function() {
-                    
-                    $('.paginate ul.pagination').remove();
-                }
-            });
-        });	
-	});	
-		
+			$(function() {
+				$('.paginateRow').jscroll({
+					autoTrigger: true,
+					loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
+					padding: 0,
+					nextSelector: '.pagination li.active + li a',
+					contentSelector: 'div.paginateRow',
+					callback: function() {
+						
+						$('.paginate ul.pagination').remove();
+					}
+				});
+			});	
+		});	
+		function addMulticart(masp, sl){
+			var soluong = sl.value;
+			$.ajax({
+				url: "{{ route('themnhieuAjax') }}",
+				method: "GET",
+				data:{masp:masp, soluong:soluong},
+				success:function(data){
+					if(data == 'ok'){
+						bootbox.alert({
+                        size: "small",
+                        title: "Thông báo",
+                        message: "Thêm sản phẩm thành công"
+                    	});
+					}
+				}
+			});
+		}
 	</script>
 @endsection

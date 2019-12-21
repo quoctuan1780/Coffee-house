@@ -14,6 +14,7 @@
 		</thead>
 		<tbody>
 			@if(Session::has('cart'))
+			{{ $row = 1 }}
 			@foreach($product_cart as $cart=>$value)
 			<tr>
 				<td data-th="Product">
@@ -30,10 +31,10 @@
 				</td>
 				<td data-th="Subtotal" class="text-center"><input type="text" class="{{ $cart }}" value="{{$value['item']['gia'] * $value['qty']}}" style="width: 100px" disabled> VNĐ</td>
 				<td class="actions" data-th="">
-					<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-					<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+					<button class="btn btn-danger btn-sm" id="{{ $row }}" onclick="deleteRow({{ $row }}, {{ $cart }})"><i class="fa fa-trash-o"></i></button>								
 				</td>
 			</tr>
+			{{ $row++ }}
 			@endforeach
 			@endif
 		</tbody>
@@ -65,6 +66,27 @@
 				success:function(data){
 					document.getElementsByClassName(id)[0].value = gia*soluong;
 					document.getElementById('tongtien').value = data;
+				}
+			});
+		}
+		function deleteRow(id, masp){
+			bootbox.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?", function(result) {
+				if(result){
+					$.ajax({
+						url: "{{ route('xoaAjax') }}",
+						method: "GET",
+						data: {masp:masp},
+						success:function(data){
+							if(data == 'ok'){
+								bootbox.alert({
+									size: "small",
+									title: "Thông báo",
+									message: "Xóa sản phẩm thành công"
+								});
+								document.getElementById('cart').deleteRow(id);
+							}
+						}
+					});
 				}
 			});
 		}

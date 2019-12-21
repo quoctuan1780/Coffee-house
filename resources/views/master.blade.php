@@ -44,8 +44,26 @@
 	<script src="assets/dest/js/waypoints.min.js"></script>
 	<script src="assets/dest/js/wow.min.js"></script>
 	<!--customjs-->
+	<script src="assets/dest/js/bootbox.min.js"></script>
 	@yield('script');
 	<script src="assets/dest/js/custom2.js"></script>
+	<script>
+        function addCart(id){
+            $.ajax({
+                url: "{{ route('themAjax') }}",
+                method:"GET",
+                data:{masp:id},
+                success:function(data){
+                    if(data == 'ok') 
+                    bootbox.alert({
+                        size: "small",
+                        title: "Thông báo",
+                        message: "Thêm sản phẩm thành công"
+                    });
+                }
+            });
+        }
+    </script>
 	<script>
 	$(document).ready(function($) {    
 		$(window).scroll(function(){

@@ -80,4 +80,35 @@ class AjaxController extends Controller
       $cartUpdate = Session::get('cart');
       echo $cartUpdate->totalPrice;
     }
+
+    public function getDeletecart(Request $req){
+      $oldcart = Session::has('cart')?Session::get('cart'):null;
+      $cart = new Cart($oldcart);
+      $cart->removeItem($req->masp);
+      if (count($cart->items) > 0) {
+          Session::put('cart', $cart); 
+      }
+      else{
+          Session::forget('cart');
+      }
+      echo 'ok';
+    }
+
+    public function getAddcart(Request $req){
+        $product = Sanpham::where('masp', $req->masp)->first();
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $req->masp);
+        $req->session()->put('cart', $cart);
+        echo 'ok';
+    }
+
+    public function getAddmulticart(Request $req){
+        $product = Sanpham::where('masp', $req->masp)->first();
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->addMulti($product, $req->masp, $req->soluong);
+        $req->session()->put('cart', $cart);
+        echo 'ok';
+    }
 }

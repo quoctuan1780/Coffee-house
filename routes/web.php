@@ -79,16 +79,6 @@ Route::get('gioithieu',[
 	'uses'=>'PageController@getGioiThieu'
 ]);
 
-Route::get('themgiohang/{masp}', [
-	'as'=>'them-gio-hang',
-	'uses'=>'PageController@getThemgiohang'
-]);
-
-Route::get('themnhieugiohang/{masp}', [
-	'as'=>'them-nhieu-gio-hang',
-	'uses'=>'PageController@getThemnhieugiohang'
-]);
-
 Route::get('xoagiohang/{masp}', [
 	'as'=>'xoa-gio-hang',
 	'uses'=>'PageController@getXoagiohang'
@@ -168,3 +158,10 @@ Route::get('checkout', [
 ]);
 
 Route::get('capnhatAjax', 'AjaxController@getUpdatecart')->name('capnhatAjax');
+
+
+Route::get('xoaAjax', 'AjaxController@getDeletecart')->name('xoaAjax');
+
+Route::get('themAjax', 'AjaxController@getAddcart')->name('themAjax');
+
+Route::get('themnhieuAjax', 'AjaxController@getAddmulticart')->name('themnhieuAjax');
