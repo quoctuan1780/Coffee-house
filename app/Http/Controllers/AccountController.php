@@ -93,8 +93,6 @@ class AccountController extends Controller
             $user->hinhanh = 'default.jpeg';
         else
             $user->hinhanh = $req->hinhanh;
-        dd($user->hinhanh);
-        exit(0);
         $user->save();
         $khachhang->hoten = $req->hoten;
         $khachhang->gioitinh = $req->gioitinh;

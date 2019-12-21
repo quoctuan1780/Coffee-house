@@ -35,6 +35,16 @@ Route::group(['prefix' => 'client' ,'middleware'=>'clientLogin'], function(){
 		'as'=>'dang-xuat',
 		'uses'=>'AccountController@getDangxuat'
 	]);
+
+	Route::post('capnhatthongtin', [
+		'as'=>'cap-nhat-thong-tin',
+		'uses'=>'PageController@postThongtinkhachhang'
+	]);
+
+	Route::post('capnhatthongtintaikhoan', [
+		'as'=>'cap-nhat-thong-tin-tai-khoan',
+		'uses'=>'PageController@postThongtintaikhoan'
+	]);
 });
 
 Route::get('index', [

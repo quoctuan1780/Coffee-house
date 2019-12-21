@@ -6,8 +6,9 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Thông tin tài khoản</h1>
             </div>
-            <div class="widget-body no-padding" style="border: 1px">
-                <div class="padding-10">
+            <div class="widget-body no-padding" style="border: 1px; ">
+                <div class="hienthi" style="display: inline-flex;">
+                    <div class="padding-10">
                     <br>
                     <div class="pull-left">
                         <div class="row" style="padding-left: 48px;">
@@ -38,8 +39,82 @@
                     <div class="clearfix"></div>
                     <br>
                 </div>
+                <div style="padding-left: 20px; box-shadow: 0px 0px 3px 0px rgba(88, 88, 88, 0.3); margin: 20px 100px;">
+                    <form action="{{ route('cap-nhat-thong-tin') }}" method="POST" class="beta-form-checkout">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="text" name="makh" value="{{ $khachhang->makh }}" hidden>
+                        <div>
+                            <h6>Cập nhật thông tin khách hàng</h6>
+                            @if(Session('thanhcong'))
+                            <div class="alert alert-success">
+                                {{ Session('thanhcong') }}
+                            </div>
+                            @endif
+                        </div>
+                        <div class="form-block">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="{{ $khachhang->email }}" disabled>
+                        </div>
+                        <div class="form-block">
+                            <label for="adress">Họ tên</label>
+                            <input type="text" name="hoten" value="{{ $khachhang->hoten }}" required>
+                        </div>
+
+                        <div class="form-block">
+                            <label for="adress">Địa chỉ</label>
+                            <input type="text" name="diachi" value="{{ $khachhang->diachi }}" required>
+                        </div>
+
+                        <div class="form-block">
+                            <label for="adress">Giới tính</label>
+                            <input type="text" name="gioitinh" value="{{ $khachhang->gioitinh }}" required>
+                        </div>
+
+                        <div class="form-block">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" name="sodt" value="{{ $khachhang->sodt }}" required>
+                        </div>
+                        <div class="form-block">
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+                <div style="padding-left: 20px; box-shadow: 0px 0px 3px 0px rgba(88, 88, 88, 0.3); margin: 20px -20px">
+
+                    <form action="{{ route('cap-nhat-thong-tin-tai-khoan') }}" method="POST" class="beta-form-checkout">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div>
+                            <h6>Cập nhật tên tài khoản</h6>
+                            @if(Session('thanhcongTk'))
+                            <div class="alert alert-success">
+                                {{ Session('thanhcong') }}
+                            </div>
+                            @endif
+                        </div>
+                        <div class="form-block">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="{{ Auth::User()->email }}" disabled>
+                        </div>
+                        <div class="form-block">
+                            <label for="email">Tên tài khoản</label>
+                            <input type="text" name="tentk" value="{{ Auth::User()->tentk }}">
+                        </div>
+
+                        <div class="form-block">
+                            <label>Hình ảnh</label>
+                            <input type="file" name="hinhanh" value="{{ Auth::User()->hinhanh }}">
+                        </div>
+
+                        <div class="form-block">
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
             </div>
         </div>
+
+        
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
