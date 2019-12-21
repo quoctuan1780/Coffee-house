@@ -180,6 +180,13 @@
 		});	
 		function addMulticart(masp, sl){
 			var soluong = sl.value;
+			if(soluong <= 0) 
+			bootbox.alert({
+					size: "small",
+					title: "Thông báo",
+					message: "Số lượng bạn nhập không không được nhỏ hơn hoặc bằng 0"
+				});
+			else
 			$.ajax({
 				url: "{{ route('themnhieuAjax') }}",
 				method: "GET",
