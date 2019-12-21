@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -158,3 +160,11 @@ Route::post('khoiphuc', [
 	'as'=>'khoi-phuc',
 	'uses'=>'AccountController@postKhoiphuc'
 ]);
+
+
+Route::get('checkout', [
+	'as'=>'kiem-tra-gio-hang',
+	'uses'=>'PageController@getCheckout'
+]);
+
+Route::get('capnhatAjax', 'AjaxController@getUpdatecart')->name('capnhatAjax');

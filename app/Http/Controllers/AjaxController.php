@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use App\Khachhang;
 use App\Sanpham;
-
+use App\Cart;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -66,5 +70,14 @@ class AjaxController extends Controller
           $output .= '</div></div>';  
           echo $output;
        }
+    }
+
+    public function getUpdatecart(Request $req){
+      $oldCart = Session('cart')?Session::get('cart'):null;
+      $cart = new Cart($oldCart);
+      $cart->updateQty($req->id, $req->soluong);
+      Session::put('cart', $cart);
+      $cartUpdate = Session::get('cart');
+      echo $cartUpdate->totalPrice;
     }
 }

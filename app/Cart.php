@@ -83,4 +83,25 @@ class Cart
 		$this->totalPrice -= $this->items[$masp]['price']*$this->items[$masp]['qty'];
 		unset($this->items[$masp]);
 	}
+
+	public function updateQty($masp, $soluong){
+		if($this->items[$masp]['qty'] < $soluong)
+		{
+			$oldQty = $this->items[$masp]['qty'];
+			$this->items[$masp]['qty'] = $soluong;
+			$this->items[$masp]['price'] += $this->items[$masp]['item']['price'] * $soluong;
+			$this->totalQty += ($soluong - $oldQty);
+			$this->totalPrice += $this->items[$masp]['price']*$soluong - $this->items[$masp]['price']*$oldQty;
+		}
+		else{
+			$oldQty = $this->items[$masp]['qty'];
+			$this->items[$masp]['qty'] = $soluong;
+			$this->items[$masp]['price'] -= ($this->items[$masp]['item']['price'] * $soluong);
+			$this->totalQty -= ($oldQty - $soluong);
+			$this->totalPrice -= $this->items[$masp]['price']*($oldQty - $soluong);
+			if($this->items[$masp]['qty'] <= 0){
+			unset($this->items[$masp]);
+			}	
+		}
+	}
 }

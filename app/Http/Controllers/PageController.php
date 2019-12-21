@@ -126,7 +126,12 @@ class PageController extends Controller
 
     
 
-    //Nhóm controller vè đặt hàng
+    //Nhóm controller về đặt hàng
+
+    public function getCheckout(){
+        return view('page.checkout');
+    }
+
     public function getDathang(){
         if(Auth::check()){
             if(Session::has('cart')){
