@@ -242,14 +242,14 @@ class PageController extends Controller
     }
 
     public function postThongtinkhachhang(Request $req){
-        DB::table('khachhang')->where('makh', '=', $req->makh)->update(['hoten'=>$req->hoten, 'diachi'=>$req->diachi, 'sodt'=>$req->sodt, 'gioitinh'=>$req->gioitinh]);
+        DB::table('khachhang')->where('makh', $req->makh)->update(['hoten'=>$req->hoten, 'diachi'=>$req->diachi, 'sodt'=>$req->sodt, 'gioitinh'=>$req->gioitinh]);
         return redirect()->back()->with(['thanhcong'=>'Cập nhật thông tin thành công']);
     }
 
     public function postThongtintaikhoan(Request $req){
         if($req->hinhanh == null) $hinhanh = 'default.jpeg';
         else $hinhanh = $req->hinhanh;
-        DB::table('users')->where('email', '=', $req->email)->update(['tentk'=>$req->tentk, 'hinhanh'=>$hinhanh]);
+        DB::table('users')->where('id', Auth::user()->id)->update(['tentk'=>$req->tentk, 'hinhanh'=>$hinhanh]);
         return redirect()->back()->with(['thanhcongTk'=>'Cập nhật thông tin tài khoản thành công']);
     }
 }

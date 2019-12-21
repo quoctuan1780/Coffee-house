@@ -87,7 +87,7 @@
                             <h6>Cập nhật tên tài khoản</h6>
                             @if(Session('thanhcongTk'))
                             <div class="alert alert-success">
-                                {{ Session('thanhcong') }}
+                                {{ Session('thanhcongTk') }}
                             </div>
                             @endif
                         </div>
