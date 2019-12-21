@@ -28,6 +28,7 @@ class PageController extends Controller
         return view('page.trangchu',compact('slide', 'new_product', 'sanpham_khuyenmai'));
     }
 
+    //Nhóm controller về sản phẩm
     public function getLoaiSp($loai){
         $sp_theoloai = Sanpham::where('maloaisp', $loai)->get();
         $sp_khac = Sanpham::where('maloaisp', '<>', $loai)->paginate(3);
@@ -58,6 +59,7 @@ class PageController extends Controller
     	return view('page.chitietsanpham', compact('sanpham', 'sp_tuongtu', 'sp_moi', 'sp_banchay'));
     }
 
+    //Nhóm controller về liên hệ giới thiệu
     public function getLienHe(){
     	return view('page.lienhe');
     }
@@ -86,6 +88,8 @@ class PageController extends Controller
         $gioithieu = Gioithieu::all();
     	return view('page.gioithieu', compact('gioithieu'));
     }
+
+    // Nhóm controller về giỏ hàng
 
     public function getThemgiohang(Request $req, $masp){
         $product = Sanpham::where('masp', $masp)->first();
@@ -118,86 +122,11 @@ class PageController extends Controller
         return redirect()->back();
     }
 
-    public function getDangnhap(){
-        return view('page.dangnhap');
-    }
+    //Nhóm controller về tài khoản
 
-    public function getDangki(){
-        return view('page.dangki');
-    }
+    
 
-    public function postDangnhap(Request $req){
-        $this->validate($req,
-            [
-                'email'=>'required|email',
-                'password'=>'required|min:6|max:20'
-            ],
-            [
-                'email.required'=>'Vui lòng nhập email',
-                'email.email'=>'Email không đúng định dạng',
-                'password.required'=>'Vui lòng nhập mật khẩu',
-                'password.min'=>'Mật khẩu ít nhất 6 kí tự',
-                'password.max'=>'Mật khẩu không quá 20 kí tự'
-            ]
-        );
-
-        $dangnhap = array('email'=>$req->email,'password'=>$req->password);
-        if(Auth::attempt($dangnhap)){
-            DB::table('users')->where('email', $req->email)
-                                ->update(['ttdn' => 1]);
-            if(Session::has('cart')){
-                $khachhang = Khachhang::where('email', Auth::user()->email)->first();
-                return view('page.dathang', compact('khachhang'));
-            }
-            redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
-            return redirect()->route('trang-chu');
-        }
-        else{
-            return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
-        }
-    }
-    public function getDangxuat(){
-        $email = Auth::user()->email;
-        DB::table('users')->where('email', $email)
-                                ->update(['ttdn' => 0]);
-        Auth::logout();
-        return redirect()->route('trang-chu');
-    }
-
-    public function postDangki(Request $req){
-        $this->validate($req,
-            [
-                'email'=>'required|email|unique:users,email',
-                'password'=>'required|min:6|max:20',
-                'tentk'=>'required',
-                're_password'=>'required|same:password'
-            ],
-            [
-                'email.required'=>'Vui lòng nhập email',
-                'email.email'=>'Không đúng định dạng email',
-                'email.unique'=>'Email đã có người sử dụng',
-                'password.required'=>'Vui lòng nhập mật khẩu',
-                're_password.same'=>'Mật khẩu không giống nhau',
-                'password.min'=>'Mật khẩu ít nhất 6 kí tự'
-            ]);
-        $user = new User();
-        $khachhang = new Khachhang();
-        $user->tentk = $req->tentk;
-        $user->email = $req->email;
-        $user->password = Hash::make($req->password);
-        $user->maquyen = 2;
-        $user->save();
-        $khachhang->hoten = $req->hoten;
-        $khachhang->gioitinh = $req->gioitinh;
-        $khachhang->diachi = $req->diachi;
-        $khachhang->email = $req->email;
-        $khachhang->diachi = $req->diachi;
-        $khachhang->sodt = $req->sodt;
-        $khachhang->matk = $user->id;
-        $khachhang->save();
-        return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
-    }
-
+    //Nhóm controller vè đặt hàng
     public function getDathang(){
         if(Auth::check()){
             if(Session::has('cart')){
@@ -284,6 +213,7 @@ class PageController extends Controller
         return redirect()->route('dat-hang')->with('thongbao', 'Đặt hàng thành công');
     }
 
+    //controllre về tìm kiếm
     public function getTimkiem(Request $req){
         $product = Sanpham::where('tensp', 'like', '%'.$req->s.'%')
                             ->orWhere('gia', $req->s)->get();
@@ -300,5 +230,14 @@ class PageController extends Controller
             return redirect()->back()->with(['ntthanhcong'=>'Đăng kí nhận tin thành công']);
         }
         else return redirect()->back()->with(['ntloi'=>'Email này đã đăng kí nhận tin rồi']);
+    }
+
+    //Nhóm controller khách hàng
+    public function getThongtinkhachhang($id){
+        if(Auth::check()){
+            $khachhang = Khachhang::where('matk', $id)->first();
+            return view('page.thongtinkhachhang', compact('khachhang'));
+        }
+        else return redirect('dangnhap');
     }
 }

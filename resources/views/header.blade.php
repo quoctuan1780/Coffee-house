@@ -10,7 +10,7 @@
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
 					@if(Auth::check())
-						<li><a href="#"><i class="fa fa-user" style="font-size: 12pt"> {{Auth::user()->tentk}}</i></a></li>
+						<li><a href="{{ route('thong-tin-tai-khoan', Auth::User()->id) }}"><i class="fa fa-user" style="font-size: 12pt"> {{Auth::user()->tentk}}</i></a></li>
 						<li><a href="{{route('dang-xuat')}}">Đăng xuất</a></li>
 					@else
 						<li><a href="{{ route('dang-ki') }}">Đăng kí</a></li>
@@ -18,6 +18,7 @@
 					@endif
 					</ul>
 				</div>
+
 				<div class="clearfix"></div>
 			</div> <!-- .container -->
 		</div> <!-- .header-top -->
@@ -34,7 +35,6 @@
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>
 					</div>
-
 					<div class="beta-comp">
 					@if(Session::has('cart'))
 						<div class="cart">

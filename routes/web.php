@@ -15,10 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'client' ,'middleware'=>'clientLogin'], function(){
+	Route::get('doimatkhau', [
+		'as'=>'doi-mat-khau',
+		'uses'=>'AccountController@getDoimatkhau'
+	]);
+
+	Route::post('doimatkhau', [
+		'as'=>'doi-mat-khau',
+		'uses'=>'AccountController@postDoimatkhau'
+	]);
+
+	Route::get('thongtintaikhoan/{id}', [
+		'as'=>'thong-tin-tai-khoan',
+		'uses'=>'PageController@getThongtinkhachhang'
+	]);
+
+	Route::get('dangxuat', [
+		'as'=>'dang-xuat',
+		'uses'=>'AccountController@getDangxuat'
+	]);
+});
+
 Route::get('index', [
     'as'=>'trang-chu',
     'uses'=>'PageController@getIndex'
-]);
+]);	
 
 Route::get('loaisanpham/{loai}', [
 	'as'=>'loai-san-pham',
@@ -62,27 +84,22 @@ Route::get('xoagiohang/{masp}', [
 
 Route::get('dangnhap', [
 	'as'=>'dang-nhap',
-	'uses'=>'PageController@getDangnhap'
+	'uses'=>'AccountController@getDangnhap'
 ]);
 
 Route::post('dangnhap', [
 	'as'=>'dang-nhap',
-	'uses'=>'PageController@postDangnhap'
-]);
-
-Route::get('dangxuat', [
-	'as'=>'dang-xuat',
-	'uses'=>'PageController@getDangxuat'
+	'uses'=>'AccountController@postDangnhap'
 ]);
 
 Route::get('dangki', [
 	'as'=>'dang-ki',
-	'uses'=>'PageController@getDangki'
+	'uses'=>'AccountController@getDangki'
 ]);
 
 Route::post('dangki', [
 	'as'=>'dang-ki',
-	'uses'=>'PageController@postDangki'
+	'uses'=>'AccountController@postDangki'
 ]);
 
 

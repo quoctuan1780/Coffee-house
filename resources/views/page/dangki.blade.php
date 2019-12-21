@@ -77,7 +77,12 @@
 						</div>
 
 						<div class="form-block">
-							<button type="submit" class="btn btn-primary">Register</button>
+	                        <label>Hình ảnh</label>
+	                        <input type="file" name="hinhanh">
+	                    </div>
+
+						<div class="form-block">
+							<button type="submit" class="btn btn-primary">Đăng kí</button>
 						</div>
 					</div>
 					<div class="col-sm-3"></div>
