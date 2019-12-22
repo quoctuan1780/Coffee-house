@@ -181,10 +181,11 @@
 		function addMulticart(masp, sl){
 			var soluong = sl.value;
 			if(soluong <= 0) 
-			bootbox.alert({
-					size: "small",
-					title: "Thông báo",
-					message: "Số lượng bạn nhập không không được nhỏ hơn hoặc bằng 0"
+			swal({
+				  title: "Cảnh báo",
+				  text: "Số lượng bạn nhập đang nhỏ hơn hoặc bằng 0",
+				  icon: "error",
+				  button: "Tôi đã hiểu!",
 				});
 			else
 			$.ajax({
@@ -193,11 +194,12 @@
 				data:{masp:masp, soluong:soluong},
 				success:function(data){
 					if(data == 'ok'){
-						bootbox.alert({
-                        size: "small",
-                        title: "Thông báo",
-                        message: "Thêm sản phẩm thành công"
-                    	});
+						swal({
+							  title: "Thông báo",
+							  text: "Thêm sản phẩm vào giỏ hàng thành công",
+							  icon: "success",
+							  button: "Ok",
+						});
 					}
 				}
 			});

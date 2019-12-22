@@ -15,6 +15,7 @@
 	<link rel="stylesheet" title="style" href="assets/dest/css/style.css">
 	<link rel="stylesheet" href="assets/dest/css/animate.css">
 	<link rel="stylesheet" title="style" href="assets/dest/css/huong-style.css">
+	<link rel="shortcut icon" type="image/png" href="image/logo/favicon.png">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
@@ -45,6 +46,7 @@
 	<script src="assets/dest/js/wow.min.js"></script>
 	<!--customjs-->
 	<script src="assets/dest/js/bootbox.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	@yield('script');
 	<script src="assets/dest/js/custom2.js"></script>
 	<script>
@@ -55,11 +57,12 @@
                 data:{masp:id},
                 success:function(data){
                     if(data == 'ok') 
-                    bootbox.alert({
-                        size: "small",
-                        title: "Thông báo",
-                        message: "Thêm sản phẩm thành công"
-                    });
+                    swal({
+					  title: "Thông báo",
+					  text: "Thêm sản phẩm vào giỏ hàng thành công",
+					  icon: "success",
+					  button: "Ok",
+					});
                 }
             });
         }

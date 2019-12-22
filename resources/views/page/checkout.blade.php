@@ -43,7 +43,7 @@
 				<td class="text-center"><strong></strong></td>
 			</tr>
 			<tr>
-				<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua sắm</a></td>
+				<td><a href="{{ route('trang-chu') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua sắm</a></td>
 				<td colspan="2" class="hidden-xs"></td>
 				<td class="hidden-xs text-center"><strong>Tổng tiền: @if(Session::has('cart'))<input style="width: 100px" type="text" name="tongtien" id="tongtien" value="{{number_format($totalPrice)}}" disabled> 
 					@else 
@@ -60,10 +60,11 @@
 		function change(sl, id, gia){
 			var soluong = sl.value;
 			if(sl.value <= 0) {
-			bootbox.alert({
-					size: "small",
-					title: "Thông báo",
-					message: "Số lượng bạn nhập không không được nhỏ hơn hoặc bằng 0"
+			swal({
+				  title: "Cảnh báo",
+				  text: "Số lượng bạn nhập đang nhỏ hơn hoặc bằng 0",
+				  icon: "error",
+				  button: "Tôi đã hiểu!",
 				});
 			}
 			else
@@ -78,24 +79,29 @@
 			});
 		}
 		function deleteRow(id, masp){
-			bootbox.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?", function(result) {
-				if(result){
-					$.ajax({
+			swal({
+			  title: "Thông báo",
+			  text: "Bạn có chắc chắn muốn xóa sản phẩm khỏi giỏ hàng ?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  	if (willDelete) {
+			  		$.ajax({
 						url: "{{ route('xoaAjax') }}",
 						method: "GET",
 						data: {masp:masp},
 						success:function(data){
 							if(data == 'ok'){
-								bootbox.alert({
-									size: "small",
-									title: "Thông báo",
-									message: "Xóa sản phẩm thành công"
-								});
 								document.getElementById('cart').deleteRow(id);
 							}
 						}
 					});
-				}
+			    	swal("Xóa sản phẩm khỏi giỏ hàng thành công", {
+			      icon: "success",
+			    	});
+			  	} 
 			});
 		}
 	</script>
