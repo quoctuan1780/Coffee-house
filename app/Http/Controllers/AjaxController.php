@@ -62,12 +62,14 @@ class AjaxController extends Controller
       $cart = new Cart($oldcart);
       $cart->removeItem($req->masp);
       if (count($cart->items) > 0) {
-          Session::put('cart', $cart); 
+          Session::put('cart', $cart);
+          $total = Session::get('cart')->totalPrice; 
+          echo $total;
       }
       else{
           Session::forget('cart');
-      }
-      echo 'ok';
+          echo 'forget';
+      } 
     }
 
     public function getAddcart(Request $req){

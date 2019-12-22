@@ -25,11 +25,16 @@
 						</div>
 					</div>
 				</td>
-				<td data-th="Price">{{ number_format($value['item']['gia']) }} VNĐ</td>
+				@if($value['item']['giakm'] == 0)
+					<div hidden>{{ $giaht = $value['item']['gia'] }}</div>
+				@else
+					<div hidden>{{ $giaht = $value['item']['giakm'] }}</div>
+				@endif
+				<td data-th="Price">{{ number_format($giaht) }} VNĐ</td>
 				<td data-th="Quantity">
-					<input type="number" class="form-control text-center" id="{{ $cart }}" onchange="change(document.getElementById({{ $cart }}), {{ $cart }}, {{ $value['item']['gia'] }})" value="{{ number_format($value['qty']) }}">
+					<input type="number" class="form-control text-center" id="{{ $cart }}" onchange="change(document.getElementById({{ $cart }}), {{ $cart }}, {{ $giaht }})" value="{{ number_format($value['qty']) }}">
 				</td>
-				<td data-th="Subtotal" class="text-center"><input type="text" class="{{ $cart }}" value="{{$value['item']['gia'] * $value['qty']}}" style="width: 100px" disabled> VNĐ</td>
+				<td data-th="Subtotal" class="text-center"><input type="text" class="{{ $cart }}" value="{{$giaht * $value['qty']}}" style="width: 100px" disabled> VNĐ</td>
 				<td class="actions" data-th="">
 					<button class="btn btn-danger btn-sm" id="{{ $row }}" onclick="deleteRow({{ $row }}, {{ $cart }})"><i class="fa fa-trash-o"></i></button>								
 				</td>
@@ -93,8 +98,13 @@
 						method: "GET",
 						data: {masp:masp},
 						success:function(data){
-							if(data == 'ok'){
+							if(data != 'forget'){
 								document.getElementById('cart').deleteRow(id);
+								document.getElementById('tongtien').value = parseInt(data);
+							}
+							else{
+								document.getElementById('cart').deleteRow(id);
+								document.getElementById('tongtien').value = 0;	
 							}
 						}
 					});
