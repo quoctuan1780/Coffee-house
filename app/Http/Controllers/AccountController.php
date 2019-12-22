@@ -42,7 +42,9 @@ class AccountController extends Controller
                 'password.max'=>'Mật khẩu không quá 20 kí tự'
             ]
         );
-
+        $maquyen =  User::where('email', $req->email)->first();
+        if($maquyen->maquyen != 2) 
+            return redirect()->back()->with(['loiLogin'=>'Bạn phải đăng nhập bằng tài khoản khách hàng']);
         $dangnhap = array('email'=>$req->email,'password'=>$req->password);
         if(Auth::attempt($dangnhap)){
             DB::table('users')->where('email', $req->email)

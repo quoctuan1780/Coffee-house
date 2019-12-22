@@ -30,6 +30,9 @@
                     @if(Session('thanhcong'))
                         <div class="alert alert-success">{{Session('thanhcong')}}</div>
                     @endif
+                    @if(Session('loiLogin'))
+                    	<div class="alert alert-dange">{{ Session('loiLogin') }}</div>
+                    @endif
 					<div class="col-sm-6">
 						<h4>Đăng nhập</h4>
 						<div class="space20">&nbsp;</div>
