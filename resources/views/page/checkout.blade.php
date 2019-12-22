@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 			@if(Session::has('cart'))
-			{{ $row = 1 }}
+				<div hidden>{{ $row = 1 }}</div>
 			@foreach($product_cart as $cart=>$value)
 			<tr>
 				<td data-th="Product">
@@ -34,7 +34,7 @@
 					<button class="btn btn-danger btn-sm" id="{{ $row }}" onclick="deleteRow({{ $row }}, {{ $cart }})"><i class="fa fa-trash-o"></i></button>								
 				</td>
 			</tr>
-			{{ $row++ }}
+			<div hidden>{{ $row++ }}</div>
 			@endforeach
 			@endif
 		</tbody>
@@ -63,7 +63,7 @@
 			swal({
 				  title: "Cảnh báo",
 				  text: "Số lượng bạn nhập đang nhỏ hơn hoặc bằng 0",
-				  icon: "error",
+				  icon: "warning",
 				  button: "Tôi đã hiểu!",
 				});
 			}

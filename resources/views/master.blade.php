@@ -45,8 +45,7 @@
 	<script src="assets/dest/js/waypoints.min.js"></script>
 	<script src="assets/dest/js/wow.min.js"></script>
 	<!--customjs-->
-	<script src="assets/dest/js/bootbox.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="assets/dest/sweetalert/docs/assets/sweetalert/sweetalert.min.js"></script>
 	@yield('script');
 	<script src="assets/dest/js/custom2.js"></script>
 	<script>
